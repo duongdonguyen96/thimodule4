@@ -25,7 +25,7 @@ public class ApiEmployeeController {
     }
 
     @RequestMapping(value = "/employees/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Employees> delete(@PathVariable("id") int id) {
+    public ResponseEntity<Employees> delete(@PathVariable("id") long id) {
         Employees tv = employeeService.remove(id);
         return new ResponseEntity<Employees>(tv, HttpStatus.OK);
     }
@@ -38,7 +38,7 @@ public class ApiEmployeeController {
     }
 
     @RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Employees> getSmartphone(@PathVariable("id") int id) {
+    public ResponseEntity<Employees> getSmartphone(@PathVariable("id") long id) {
 
         Employees employees = employeeService.findById(id);
         return new ResponseEntity<Employees>(employees, HttpStatus.OK);

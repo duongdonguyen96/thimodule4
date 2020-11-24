@@ -33,20 +33,20 @@
 </head>
 <body>
 <div class="container" id="container">
-    <h1>Em bị lỗi Syntex Erro PostGressSQL.. còn 30p cuối giờ mới fix được lỗi... bài làm mới CRUD Sida...Đừng chấm nữa anh</h1>
+    <h1>All Employees</h1>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create</button>
     <table id="dataTable" class="table table-dark table-hover" border="1px" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
             <th>ID</th>
-            <th>name</th>
+            <th>Name</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>CMND</th>
+            <th>ID Card</th>
             <th>Address</th>
             <th>Gender</th>
             <th>Group</th>
-            <th>DateOfBirth</th>
+            <th>DOB</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-3">
-                            <label>CMND</label>
+                            <label>ID Card</label>
                         </div>
                         <div class="col-9">
                             <input type="text" id="cmnd" name="cmnd" class="form-control" required>
@@ -117,20 +117,20 @@
                             <label>Date Of Birth</label>
                         </div>
                         <div class="col-9">
-                            <input type="date" id="ngaysinh" name="ngaysinh" class="form-control" required>
+                            <input type="date" id="dob" name="dob" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-3">
-                            <label for="nhom">Group</label>
+                            <label for="group_name">Group</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" id="nhom" name="nhom">
-                                <option value="Nhan Vien">Nhom1</option>
-                                <option value="Giam Doc">Nhom2</option>
-                                <option value="Bao Ve">Nhom3</option>
-                                <option value="Lao Cong">Nhom4</option>
+                            <select class="form-control" id="group_name" name="group_name">
+                                <option value="NhanVien">NhanVien</option>
+                                <option value="GiamDoc">GiamDoc</option>
+                                <option value="BaoVe">BaoVe</option>
+                                <option value="LaoCong">LaoCong</option>
                             </select>
                         </div>
                     </div>
@@ -140,9 +140,9 @@
                         </div>
                         <div class="col-9">
                             <select class="form-control" id="gender" name="gender">
-                                <option value="male">male</option>
-                                <option value="female">female</option>
-                                <option value="otherfemale">Other Gender</option>
+                                <option value="male">MALE</option>
+                                <option value="female">FEMALE</option>
+                                <option value="other gender">OTHER GENDER</option>
                             </select>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Edit Telivision</h4>
+                <h4 class="modal-title">Edit Employee</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -219,42 +219,42 @@
                             <label>Date Of Birth</label>
                         </div>
                         <div class="col-9">
-                            <input type="date" id="ngaysinhUpdate" name="ngaysinhUpdate" class="form-control"
+                            <input type="date" id="dobUpdate" name="dobUpdate" class="form-control"
                                    required>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-3">
-                            <label>CMND</label>
+                            <label>ID Card</label>
                         </div>
                         <div class="col-9">
-                            <input type="date" id="cmndUpdate" name="cmndUpdate" class="form-control"
+                            <input type="text" id="cmndUpdate" name="cmndUpdate" class="form-control"
                                    required>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-3">
-                            <label for="nhomUpdate">Group</label>
+                            <label for="group_nameUpdate">Group</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" id="nhomUpdate" name="nhomUpdate">
-                                <option value="nhom1">Nhom1</option>
-                                <option value="nhom2">Nhom2</option>
-                                <option value="nhom3">Nhom3</option>
-                                <option value="nhom4">Nhom4</option>
+                            <select class="form-control" id="group_nameUpdate" name="group_nameUpdate">
+                                <option value="NhanVien">NhanVien</option>
+                                <option value="GiamDoc">GiamDoc</option>
+                                <option value="BaoVe">BaoVe</option>
+                                <option value="LaoCong">LaoCong</option>
                             </select>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-3">
-                            <label for="genderUpdate">Gender</label>
+                            <label for="gender">Gender</label>
                         </div>
                         <div class="col-9">
                             <select class="form-control" id="genderUpdate" name="genderUpdate">
-                                <option value="male">male</option>
-                                <option value="female">female</option>
-                                <option value="otherfemale">Other Gender</option>
+                                <option value="male">MALE</option>
+                                <option value="female">FEMALE</option>
+                                <option value="other gender">OTHER GENDER</option>
                             </select>
                         </div>
                     </div>
@@ -276,22 +276,6 @@
         </div>
     </div>
 </div>
-<!-- Datatable JS-->
-
-
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-<!--<script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
-
-<!--<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"-->
-<!--        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.1/bootbox.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>-->
-
 
 <script type="text/javascript">
     var employees = {} || employees;
@@ -312,8 +296,8 @@
                         "<td>" + v.cmnd + "</td>" +
                         "<td>" + v.address + "</td>" +
                         "<td>" + v.gender + "</td>" +
-                        "<td>" + v.nhom + "</td>" +
-                        "<td>" + v.ngaysinh + "</td>" +
+                        "<td>" + v.group_name + "</td>" +
+                        "<td>" + v.dob + "</td>" +
                         "<td>" +
                         "<a class='ml-3 btn btn-warning' href='#' onclick='employees.get(" + v.id + ")' data-toggle=\"modal\" data-target=\"#modalUpdate\">Edit</a>" +
                         "<a class='ml-3 btn btn-danger' href='#' onclick='employees.remove(" + v.id + ")'>Delete</a>" +
@@ -348,7 +332,7 @@
                         dataType: 'json',
                         success: function (data) {
                             employees.drawTable();
-                            toastr.info('Telivison has been deleted successfully', 'INFORMATION:')
+                            toastr.info('employees has been deleted successfully', 'INFORMATION:')
                         }
                     });
                 }
@@ -368,8 +352,8 @@
             tv.cmnd = $('#cmnd').val();
             tv.address = $('#address').val();
             tv.gender = $('#gender').val();
-            tv.nhom = $('#nhom').val();
-            tv.dateofbirth = $('#ngaysinh').val();
+            tv.group_name = $('#group_name').val();
+            tv.dob = $('#dob').val();
             $.ajax({
                 url: "http://localhost:8080/api/employees/",
                 method: "POST", //"POST"
@@ -398,8 +382,8 @@
                 $('#cmndUpdate').val(data.cmnd);
                 $('#addressUpdate').val(data.address);
                 $('#genderUpdate').val(data.gender);
-                $('#nhomupdate').val(data.nhom);
-                $('#ngaysinhUpdate').val(data.dateofbirth);
+                $('#group_nameUpdate').val(data.group_name);
+                $('#dobUpdate').val(data.dob);
                 $('#idUpdate').val(data.id);
             }
         })
@@ -413,8 +397,8 @@
         tv.cmnd = $('#cmndUpdate').val();
         tv.address = $('#addressUpdate').val();
         tv.gender = $('#genderUpdate').val();
-        tv.nhom = $('#nhomUpdate').val();
-        tv.dateofbirth = $('#ngaysinhUpdate').val();
+        tv.group_name = $('#group_nameUpdate').val();
+        tv.dob = $('#dobUpdate').val();
         tv.id = $('#idUpdate').val();
 
         $.ajax({
@@ -442,89 +426,89 @@
         $('#cmnd').val('');
         $('#address').val('');
         $('#gender').val('');
-        $('#nhom').val('');
-        $('#ngaysinh').val('');
+        $('#group_name').val('');
+        $('#dob').val('');
 
     }
 
     $(document).ready(function () {
         employees.drawTable();
-        $('#createForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 5,
-                    maxlength: 45,
-                },
-                price: {
-                    required: true,
-
-                },
-                description: {
-                    required: true,
-                    minlength: 5,
-                },
-                producer: {
-                    required: true,
-                }
-            },
-            messages: {
-                name: {
-                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
-                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
-                },
-                description: {
-                    required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                    minlength: 'Độ nhỏ nhất là 5'
-                },
-                price: {
-                    required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                },
-                producer: {
-                    required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-                }
-            }
-        });
-
-
-        $('#updateForm').validate({
-            rules: {
-                nameUpdate: {
-                    required: true,
-                    minlength: 5,
-                    maxlength: 45,
-                },
-                priceUpdate: {
-                    required: true,
-
-                },
-                descriptionUpdate: {
-                    required: true,
-                    minlength: 5,
-                },
-                producerUpdate: {
-                    required: true,
-                }
-            },
-            messages: {
-                nameUpdate: {
-                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
-                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
-                },
-                descriptionUpdate: {
-                    required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                    minlength: 'Độ nhỏ nhất là 5'
-                },
-                priceUpdate: {
-                    required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                },
-                producerUpdate: {
-                    required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-                }
-            }
-        });
+        // $('#createForm').validate({
+        //     rules: {
+        //         name: {
+        //             required: true,
+        //             minlength: 5,
+        //             maxlength: 45,
+        //         },
+        //         price: {
+        //             required: true,
+        //
+        //         },
+        //         description: {
+        //             required: true,
+        //             minlength: 5,
+        //         },
+        //         producer: {
+        //             required: true,
+        //         }
+        //     },
+        //     messages: {
+        //         name: {
+        //             required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+        //             minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
+        //             maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
+        //         },
+        //         description: {
+        //             required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+        //             minlength: 'Độ nhỏ nhất là 5'
+        //         },
+        //         price: {
+        //             required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+        //         },
+        //         producer: {
+        //             required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+        //         }
+        //     }
+        // });
+        //
+        //
+        // $('#updateForm').validate({
+        //     rules: {
+        //         nameUpdate: {
+        //             required: true,
+        //             minlength: 5,
+        //             maxlength: 45,
+        //         },
+        //         priceUpdate: {
+        //             required: true,
+        //
+        //         },
+        //         descriptionUpdate: {
+        //             required: true,
+        //             minlength: 5,
+        //         },
+        //         producerUpdate: {
+        //             required: true,
+        //         }
+        //     },
+        //     messages: {
+        //         nameUpdate: {
+        //             required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+        //             minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
+        //             maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
+        //         },
+        //         descriptionUpdate: {
+        //             required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+        //             minlength: 'Độ nhỏ nhất là 5'
+        //         },
+        //         priceUpdate: {
+        //             required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+        //         },
+        //         producerUpdate: {
+        //             required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+        //         }
+        //     }
+        // });
     });
 </script>
 </body>

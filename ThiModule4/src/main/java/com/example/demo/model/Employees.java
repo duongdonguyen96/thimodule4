@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "employees")
@@ -10,14 +13,13 @@ public class Employees {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private String nhomnhanvien;
+    private String group_name;
     private String cmnd;
     private String phone;
     private String gender;
     private String email;
     private String address;
-    private Date dateOfBirth;
-
+    private Date dob;
 
     public Employees() {
     }
@@ -38,12 +40,12 @@ public class Employees {
         this.name = name;
     }
 
-    public String getNhomnhanvien() {
-        return nhomnhanvien;
+    public String getGroup_name() {
+        return group_name;
     }
 
-    public void setNhomnhanvien(String nhomnhanvien) {
-        this.nhomnhanvien = nhomnhanvien;
+    public void setGroup_name(String group_name) {
+        this.group_name = group_name;
     }
 
     public String getCmnd() {
@@ -86,11 +88,11 @@ public class Employees {
         this.address = address;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 }

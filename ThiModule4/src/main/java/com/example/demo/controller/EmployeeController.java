@@ -13,4 +13,9 @@ public class EmployeeController {
     public String index() {
         return "employee";
     }
+
+    @GetMapping("/")
+    public String home() {
+        return "employee";
+    }
 }
