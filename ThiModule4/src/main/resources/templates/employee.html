@@ -433,82 +433,131 @@
 
     $(document).ready(function () {
         employees.drawTable();
-        // $('#createForm').validate({
-        //     rules: {
-        //         name: {
-        //             required: true,
-        //             minlength: 5,
-        //             maxlength: 45,
-        //         },
-        //         price: {
-        //             required: true,
-        //
-        //         },
-        //         description: {
-        //             required: true,
-        //             minlength: 5,
-        //         },
-        //         producer: {
-        //             required: true,
-        //         }
-        //     },
-        //     messages: {
-        //         name: {
-        //             required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-        //             minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
-        //             maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
-        //         },
-        //         description: {
-        //             required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-        //             minlength: 'Độ nhỏ nhất là 5'
-        //         },
-        //         price: {
-        //             required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-        //         },
-        //         producer: {
-        //             required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-        //         }
-        //     }
-        // });
-        //
-        //
-        // $('#updateForm').validate({
-        //     rules: {
-        //         nameUpdate: {
-        //             required: true,
-        //             minlength: 5,
-        //             maxlength: 45,
-        //         },
-        //         priceUpdate: {
-        //             required: true,
-        //
-        //         },
-        //         descriptionUpdate: {
-        //             required: true,
-        //             minlength: 5,
-        //         },
-        //         producerUpdate: {
-        //             required: true,
-        //         }
-        //     },
-        //     messages: {
-        //         nameUpdate: {
-        //             required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-        //             minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
-        //             maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
-        //         },
-        //         descriptionUpdate: {
-        //             required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-        //             minlength: 'Độ nhỏ nhất là 5'
-        //         },
-        //         priceUpdate: {
-        //             required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-        //         },
-        //         producerUpdate: {
-        //             required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-        //         }
-        //     }
-        // });
+        $('#createForm').validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 45,
+                },
+                phone: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 12,
+
+                },
+                email: {
+                    required: true,
+                    maxlength: 50,
+                    minlength: 10,
+                },
+                cmnd: {
+                    required: true,
+                    minlength: 9,
+                    maxlength: 10,
+                },
+                address: {
+                    required: true,
+                    minlength: 10,
+
+                },
+                gender: {
+                    required: true,
+                },
+                dob: {
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
+                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
+                },
+                phone: {
+                    required: ' phone không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                email: {
+                    required: 'email không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                cmnd: {
+                    required: "cmnd không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                address: {
+                    required: "address không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                gender: {
+                    required: "gender không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                dob: {
+                    required: "dob không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                }
+
+            }
+        });
+
+        $('#updateForm').validate({
+            rules: {
+                nameUpdate: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 45,
+                },
+                phoneUpdate: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 12,
+
+                },
+                emailUpdate: {
+                    required: true,
+                    maxlength: 50,
+                    minlength: 10,
+                },
+                cmndUpdate: {
+                    required: true,
+                    minlength: 9,
+                    maxlength: 10,
+                },
+                addressUpdate: {
+                    required: true,
+                    minlength: 10,
+
+                },
+                genderUpdate: {
+                    required: true,
+                },
+                dobUpdate: {
+                    required: true,
+                }
+            },
+            messages: {
+                nameUpdate: {
+                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
+                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi',
+                },
+                phoneUpdate: {
+                    required: ' phone không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                emailUpdate: {
+                    required: 'email không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                cmndUpdate: {
+                    required: "cmnd không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                addressUpdate: {
+                    required: "address không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                genderUpdate: {
+                    required: "gender không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                dobUpdate: {
+                    required: "dob không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                }
+
+            }
+        });
     });
 </script>
 </body>
