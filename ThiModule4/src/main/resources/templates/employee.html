@@ -101,7 +101,7 @@
                             <label>ID Card</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="cmnd" name="cmnd" class="form-control" required>
+                            <input type="number" id="cmnd" name="cmnd" class="form-control" required>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -127,10 +127,6 @@
                         </div>
                         <div class="col-9">
                             <select class="form-control" id="group_name" name="group_name">
-                                <option value="NhanVien">NhanVien</option>
-                                <option value="GiamDoc">GiamDoc</option>
-                                <option value="BaoVe">BaoVe</option>
-                                <option value="LaoCong">LaoCong</option>
                             </select>
                         </div>
                     </div>
@@ -228,7 +224,7 @@
                             <label>ID Card</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="cmndUpdate" name="cmndUpdate" class="form-control"
+                            <input type="number" id="cmndUpdate" name="cmndUpdate" class="form-control"
                                    required>
                         </div>
                     </div>
@@ -239,10 +235,6 @@
                         </div>
                         <div class="col-9">
                             <select class="form-control" id="group_nameUpdate" name="group_nameUpdate">
-                                <option value="NhanVien">NhanVien</option>
-                                <option value="GiamDoc">GiamDoc</option>
-                                <option value="BaoVe">BaoVe</option>
-                                <option value="LaoCong">LaoCong</option>
                             </select>
                         </div>
                     </div>
@@ -279,6 +271,8 @@
 
 <script type="text/javascript">
     var employees = {} || employees;
+    var group = {} || group;
+    var groupData = [];
     employees.drawTable = function () {
         $.ajax({
             url: "http://localhost:8080/api/employees/",
@@ -296,7 +290,7 @@
                         "<td>" + v.cmnd + "</td>" +
                         "<td>" + v.address + "</td>" +
                         "<td>" + v.gender + "</td>" +
-                        "<td>" + v.group_name + "</td>" +
+                        "<td>" + v.groups.name + "</td>" +
                         "<td>" + v.dob + "</td>" +
                         "<td>" +
                         "<a class='ml-3 btn btn-warning' href='#' onclick='employees.get(" + v.id + ")' data-toggle=\"modal\" data-target=\"#modalUpdate\">Edit</a>" +
@@ -352,8 +346,8 @@
             tv.cmnd = $('#cmnd').val();
             tv.address = $('#address').val();
             tv.gender = $('#gender').val();
-            tv.group_name = $('#group_name').val();
             tv.dob = $('#dob').val();
+            tv.groups = group.findById(parseInt($('#group_name').val()));
             $.ajax({
                 url: "http://localhost:8080/api/employees/",
                 method: "POST", //"POST"
@@ -382,7 +376,7 @@
                 $('#cmndUpdate').val(data.cmnd);
                 $('#addressUpdate').val(data.address);
                 $('#genderUpdate').val(data.gender);
-                $('#group_nameUpdate').val(data.group_name);
+                $('#group_nameUpdate').val(data.groups.id);
                 $('#dobUpdate').val(data.dob);
                 $('#idUpdate').val(data.id);
             }
@@ -390,36 +384,71 @@
     }
 
     employees.update = function (id) {
-        var tv = {};
-        tv.name = $('#nameUpdate').val();
-        tv.phone = $('#phoneUpdate').val();
-        tv.email = $('#emailUpdate').val();
-        tv.cmnd = $('#cmndUpdate').val();
-        tv.address = $('#addressUpdate').val();
-        tv.gender = $('#genderUpdate').val();
-        tv.group_name = $('#group_nameUpdate').val();
-        tv.dob = $('#dobUpdate').val();
-        tv.id = $('#idUpdate').val();
 
+        if ($('#updateForm').valid()) {
+            var tv = {};
+            tv.name = $('#nameUpdate').val();
+            tv.phone = $('#phoneUpdate').val();
+            tv.email = $('#emailUpdate').val();
+            tv.cmnd = $('#cmndUpdate').val();
+            tv.address = $('#addressUpdate').val();
+            tv.gender = $('#genderUpdate').val();
+            tv.groups = group.findById(parseInt($('#group_nameUpdate').val()));
+            tv.dob = $('#dobUpdate').val();
+            tv.id = $('#idUpdate').val();
+
+            $.ajax({
+                url: "http://localhost:8080/api/employees/",
+                method: "PUT", //"POST"
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(tv),
+                success: function (data) {
+                    console.log(data);
+                    employees.drawTable();
+                    toastr.success('Employees has been updated successfully', 'INFORMATION:')
+
+                }
+            });
+            return false;
+        }
+
+
+    }
+
+
+    group.lisGroups = function () {
         $.ajax({
-            url: "http://localhost:8080/api/employees/",
-            method: "PUT", //"POST"
-            dataType: 'json',
-            contentType: "application/json",
-            data: JSON.stringify(tv),
+            url: "http://localhost:8080/api/groups/",
+            method: "GET",
+            dataType: "json",
             success: function (data) {
-                console.log(data);
-                employees.drawTable();
-                toastr.success('Employees has been updated successfully', 'INFORMATION:')
+                groupData = data;
+                $.each(data, function (i, v) {
+                    $('#group_name').append(
+                        "<option value='" + v.id + "'>" + v.name + "</option>"
+                    );
+                });
 
+                $.each(data, function (i, v) {
+                    $('#group_nameUpdate').append(
+                        "<option value='" + v.id + "'>" + v.name + "</option>"
+                    );
+                });
             }
         });
-        return false;
+    }
+    group.findById = function (id) {
+        for (let i = 0; i < groupData.length; i++) {
+            if (id === groupData[i].id) {
+                return groupData[i];
+            }
+        }
+        return null;
     }
 
 
     employees.reset = function () {
-
         $('#name').val('');
         $('#phone').val('');
         $('#email').val('');
@@ -429,73 +458,13 @@
         $('#group_name').val('');
         $('#dob').val('');
 
+
     }
+
 
     $(document).ready(function () {
         employees.drawTable();
-        $('#createForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 5,
-                    maxlength: 45,
-                },
-                phone: {
-                    required: true,
-                    minlength: 10,
-                    maxlength: 12,
-
-                },
-                email: {
-                    required: true,
-                    maxlength: 50,
-                    minlength: 10,
-                },
-                cmnd: {
-                    required: true,
-                    minlength: 9,
-                    maxlength: 10,
-                },
-                address: {
-                    required: true,
-                    minlength: 10,
-
-                },
-                gender: {
-                    required: true,
-                },
-                dob: {
-                    required: true,
-                }
-            },
-            messages: {
-                name: {
-                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
-                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
-                },
-                phone: {
-                    required: ' phone không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                },
-                email: {
-                    required: 'email không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
-                },
-                cmnd: {
-                    required: "cmnd không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-                },
-                address: {
-                    required: "address không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-                },
-                gender: {
-                    required: "gender không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-                },
-                dob: {
-                    required: "dob không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
-                }
-
-            }
-        });
-
+        group.lisGroups();
         $('#updateForm').validate({
             rules: {
                 nameUpdate: {
@@ -553,6 +522,70 @@
                     required: "gender không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
                 },
                 dobUpdate: {
+                    required: "dob không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                }
+
+            }
+        });
+
+
+        $('#createForm').validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 45,
+                },
+                phone: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 12,
+
+                },
+                email: {
+                    required: true,
+                    maxlength: 50,
+                    minlength: 10,
+                },
+                cmnd: {
+                    required: true,
+                    minlength: 9,
+                    maxlength: 10,
+                },
+                address: {
+                    required: true,
+                    minlength: 10,
+
+                },
+                gender: {
+                    required: true,
+                },
+                dob: {
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
+                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
+                },
+                phone: {
+                    required: ' phone không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                email: {
+                    required: 'email không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                cmnd: {
+                    required: "cmnd không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                address: {
+                    required: "address không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                gender: {
+                    required: "gender không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                },
+                dob: {
                     required: "dob không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
                 }
 

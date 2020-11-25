@@ -1,9 +1,6 @@
 package com.example.demo.model;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity
@@ -13,13 +10,16 @@ public class Employees {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private String group_name;
     private String cmnd;
     private String phone;
     private String gender;
     private String email;
     private String address;
     private Date dob;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     public Employees() {
     }
@@ -40,12 +40,12 @@ public class Employees {
         this.name = name;
     }
 
-    public String getGroup_name() {
-        return group_name;
+    public Group getGroups() {
+        return group;
     }
 
-    public void setGroup_name(String group_name) {
-        this.group_name = group_name;
+    public void setGroups(Group group) {
+        this.group = group;
     }
 
     public String getCmnd() {
